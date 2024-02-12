@@ -1,0 +1,126 @@
+[gd_scene load_steps=16 format=3 uid="uid://cil458od1sm3h"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_ttmk6"]
+[ext_resource type="Texture2D" uid="uid://diu3h5pkhwums" path="res://Assets/aesprite/vampire.png" id="2_0kotw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_horki"]
+radius = 33.0
+height = 128.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lstm"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4g0k"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50a6p"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl1ec"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5g2g"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bao0"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkatb"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnp81"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uled0"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(192, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnwrx"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30gh4"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ss7rx"]
+animations = [{
+"frames": [{
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_7lstm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4g0k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50a6p")
+}, {
+"duration": 9999.0,
+"texture": SubResource("AtlasTexture_xl1ec")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5g2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bao0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkatb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnp81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uled0")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnwrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30gh4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ttmk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -16)
+shape = SubResource("CapsuleShape2D_horki")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -48)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_ss7rx")
+animation = &"idle"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
