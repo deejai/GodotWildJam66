@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cil458od1sm3h"]
+[gd_scene load_steps=22 format=3 uid="uid://cil458od1sm3h"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_ttmk6"]
 [ext_resource type="Texture2D" uid="uid://diu3h5pkhwums" path="res://Assets/aesprite/vampire.png" id="2_0kotw"]
+[ext_resource type="Texture2D" uid="uid://cxo7raxfq15eh" path="res://icon.svg" id="3_m4bok"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_horki"]
 radius = 33.0
@@ -14,6 +15,26 @@ region = Rect2(144, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4g0k"]
 atlas = ExtResource("2_0kotw")
 region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5urig"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru2x0"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nudu"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q2o8"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5h1f"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(0, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_50a6p"]
 atlas = ExtResource("2_0kotw")
@@ -47,9 +68,9 @@ region = Rect2(192, 48, 48, 48)
 atlas = ExtResource("2_0kotw")
 region = Rect2(48, 96, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_30gh4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hwdi"]
 atlas = ExtResource("2_0kotw")
-region = Rect2(0, 96, 48, 48)
+region = Rect2(96, 96, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ss7rx"]
 animations = [{
@@ -59,6 +80,42 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n4g0k")
+}, {
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_5urig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru2x0")
+}, {
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_5nudu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q2o8")
+}, {
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_5nudu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q2o8")
+}, {
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_5nudu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q2o8")
+}, {
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_5nudu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q2o8")
+}, {
+"duration": 9.0,
+"texture": SubResource("AtlasTexture_5nudu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5h1f")
 }],
 "loop": true,
 "name": &"idle",
@@ -100,7 +157,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tnwrx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_30gh4")
+"texture": SubResource("AtlasTexture_3hwdi")
 }],
 "loop": true,
 "name": &"walk",
@@ -118,9 +175,18 @@ shape = SubResource("CapsuleShape2D_horki")
 position = Vector2(-2, -48)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ss7rx")
-animation = &"idle"
+animation = &"walk"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(-500, 253)
+texture = ExtResource("3_m4bok")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
