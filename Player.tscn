@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cil458od1sm3h"]
+[gd_scene load_steps=29 format=3 uid="uid://cil458od1sm3h"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_ttmk6"]
 [ext_resource type="Texture2D" uid="uid://diu3h5pkhwums" path="res://Assets/aesprite/vampire.png" id="2_0kotw"]
-[ext_resource type="Texture2D" uid="uid://cxo7raxfq15eh" path="res://icon.svg" id="3_m4bok"]
+[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="3_ufli5"]
+[ext_resource type="Texture2D" uid="uid://doodoweib2pp2" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_sj43a"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_horki"]
 radius = 33.0
@@ -164,7 +165,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsx5l"]
+size = Vector2(122, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5ljk"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(224, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85pvm"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0v5k"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr6ra"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6g37m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5ljk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85pvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0v5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr6ra")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 5
+floor_stop_on_slope = false
+floor_max_angle = 0.0663225
 script = ExtResource("1_ttmk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -179,14 +222,68 @@ animation = &"walk"
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LightWithShadow" type="PointLight2D" parent="."]
+energy = 0.05
+shadow_enabled = true
+texture = ExtResource("4_sj43a")
+texture_scale = 4.0
+
+[node name="LightAllLayers" type="PointLight2D" parent="."]
+energy = 0.13
+shadow_item_cull_mask = 2
+texture = ExtResource("4_sj43a")
+texture_scale = 8.0
+
+[node name="PickupArea" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_xsx5l")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(-500, 253)
-texture = ExtResource("3_m4bok")
+[node name="EquippedSprite" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 5
+position = Vector2(64, 585)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_6g37m")
+frame = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 37.0
+offset_top = 568.0
+offset_right = 77.0
+offset_bottom = 608.0
+
+[node name="Label_PickupItem" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 1002.0
+offset_top = 609.0
+offset_right = 1139.0
+offset_bottom = 632.0
+text = "Press E to Pick Up"
+
+[node name="Label_DropItem" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 1002.0
+offset_top = 609.0
+offset_right = 1139.0
+offset_bottom = 632.0
+text = "Press E to Drop"
+
+[node name="Label_UseItem" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 1004.0
+offset_top = 581.0
+offset_right = 1152.0
+offset_bottom = 604.0
+text = "Press F or Left Click to Use"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
+[connection signal="area_exited" from="PickupArea" to="." method="_on_pickup_area_area_exited"]

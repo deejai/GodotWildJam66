@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6bg8a7e21xsl"]
+
+[ext_resource type="Texture2D" uid="uid://diu3h5pkhwums" path="res://Assets/aesprite/vampire.png" id="1_7cew2"]
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_qivt0"]
+[ext_resource type="Script" path="res://DirectionalLight2D.gd" id="2_v6rf5"]
+[ext_resource type="Texture2D" uid="uid://y4v0hl0e8as8" path="res://Assets/aesprite/sun.png" id="3_64k1q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5fgu"]
+atlas = ExtResource("3_64k1q")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mojx6"]
+atlas = ExtResource("3_64k1q")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v2bg"]
+atlas = ExtResource("3_64k1q")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvfxp"]
+atlas = ExtResource("3_64k1q")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s30dx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5fgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mojx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v2bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvfxp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_qivt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(883, 512)
+scale = Vector2(-12, 12)
+texture = ExtResource("1_7cew2")
+region_enabled = true
+region_rect = Rect2(201.908, 14.0397, 30.5886, 36.3239)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(72, 71)
+energy = 0.1
+script = ExtResource("2_v6rf5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_right = 1152.0
+offset_bottom = 659.0
+color = Color(0.619608, 1, 1, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.658824)
+position = Vector2(55, 62)
+sprite_frames = SubResource("SpriteFrames_s30dx")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 463.0
+offset_top = 245.0
+offset_right = 645.0
+offset_bottom = 341.0
+theme_override_colors/font_color = Color(0.443137, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.313726, 0.247059, 1)
+theme_override_font_sizes/font_size = 64
+text = "Start"
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

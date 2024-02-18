@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceda5rptmq08y"]
+
+[ext_resource type="Texture2D" uid="uid://doodoweib2pp2" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="1_ljefl"]
+[ext_resource type="Script" path="res://Objects/Lights/Candle.gd" id="1_qyy0o"]
+[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="2_s7sib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_helet"]
+atlas = ExtResource("2_s7sib")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kt1w"]
+atlas = ExtResource("2_s7sib")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vtwx"]
+atlas = ExtResource("2_s7sib")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbmjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_helet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kt1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vtwx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Candle" type="Node2D"]
+script = ExtResource("1_qyy0o")
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.45
+shadow_enabled = true
+texture = ExtResource("1_ljefl")
+texture_scale = 5.0
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_lbmjy")
+autoplay = "default"

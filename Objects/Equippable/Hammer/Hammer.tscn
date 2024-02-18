@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq2b2lho2l50t"]
+
+[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="1_eq5pm"]
+[ext_resource type="Script" path="res://Objects/Equippable/Hammer/Hammer.gd" id="1_yxea0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_at304"]
+radius = 19.57
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv0b5"]
+size = Vector2(74, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjhf6"]
+size = Vector2(76, 94)
+
+[node name="Hammer" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+lock_rotation = true
+script = ExtResource("1_yxea0")
+equip_offset_x = 25.0
+equip_offset_y = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(28.6505, -50.3495)
+rotation = -0.204241
+scale = Vector2(4, 4)
+texture = ExtResource("1_eq5pm")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="HitArea" type="Area2D" parent="."]
+position = Vector2(27.6505, -63.3495)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(9, -19)
+shape = SubResource("CircleShape2D_at304")
+
+[node name="PickupArea" type="Area2D" parent="."]
+position = Vector2(21.6505, -39.3495)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(8, -4.5)
+shape = SubResource("RectangleShape2D_dv0b5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(29.6505, -44.3495)
+shape = SubResource("RectangleShape2D_wjhf6")
+
+[connection signal="area_entered" from="HitArea" to="." method="_on_hit_area_area_entered"]
