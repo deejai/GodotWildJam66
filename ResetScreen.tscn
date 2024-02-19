@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddnxh1qcgp57n"]
+
+[ext_resource type="Texture2D" uid="uid://bw3jgb8wx1cnk" path="res://Assets/Coffin_and_maid2.png" id="1_cgb3d"]
+[ext_resource type="Texture2D" uid="uid://ecs3dan6d1cd" path="res://Assets/Coffin_and_maid1.png" id="2_vlxeg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw2n8"]
+atlas = ExtResource("1_cgb3d")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dae2m"]
+atlas = ExtResource("2_vlxeg")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyvf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw2n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dae2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ResetScreen" type="Node2D"]
+
+[node name="Coffin" type="AnimatedSprite2D" parent="."]
+position = Vector2(578, 325)
+scale = Vector2(0.601852, 0.601852)
+sprite_frames = SubResource("SpriteFrames_nyvf8")
+autoplay = "default"

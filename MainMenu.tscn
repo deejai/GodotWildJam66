@@ -78,4 +78,14 @@ theme_override_font_sizes/font_size = 64
 text = "Start"
 flat = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = 183.0
+offset_top = 121.0
+offset_right = 946.0
+offset_bottom = 288.0
+theme_override_colors/font_color = Color(0.886275, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Unfinished Vampire Game"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

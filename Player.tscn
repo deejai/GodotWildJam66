@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cil458od1sm3h"]
+[gd_scene load_steps=34 format=3 uid="uid://cil458od1sm3h"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_ttmk6"]
 [ext_resource type="Texture2D" uid="uid://diu3h5pkhwums" path="res://Assets/aesprite/vampire.png" id="2_0kotw"]
@@ -8,6 +8,14 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_horki"]
 radius = 33.0
 height = 128.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p04yw"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(144, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypxbt"]
+atlas = ExtResource("2_0kotw")
+region = Rect2(192, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lstm"]
 atlas = ExtResource("2_0kotw")
@@ -75,6 +83,17 @@ region = Rect2(96, 96, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ss7rx"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p04yw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypxbt")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 9.0,
 "texture": SubResource("AtlasTexture_7lstm")
@@ -184,6 +203,18 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("3_ufli5")
 region = Rect2(160, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsv70"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75wjv"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idfm6"]
+atlas = ExtResource("3_ufli5")
+region = Rect2(192, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6g37m"]
 animations = [{
 "frames": [{
@@ -198,6 +229,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fr6ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsv70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75wjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idfm6")
 }],
 "loop": true,
 "name": &"default",
@@ -218,7 +258,7 @@ shape = SubResource("CapsuleShape2D_horki")
 position = Vector2(-2, -48)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ss7rx")
-animation = &"walk"
+animation = &"climb"
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -251,13 +291,13 @@ z_index = 5
 position = Vector2(64, 585)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_6g37m")
-frame = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 37.0
-offset_top = 568.0
-offset_right = 77.0
-offset_bottom = 608.0
+offset_left = 1.0
+offset_top = 525.0
+offset_right = 126.0
+offset_bottom = 647.0
+color = Color(1, 1, 1, 0.168627)
 
 [node name="Label_PickupItem" type="Label" parent="CanvasLayer"]
 visible = false
@@ -282,6 +322,13 @@ offset_top = 581.0
 offset_right = 1152.0
 offset_bottom = 604.0
 text = "Press F or Left Click to Use"
+
+[node name="Label_Sleep" type="Label" parent="CanvasLayer"]
+offset_left = 1004.0
+offset_top = 558.0
+offset_right = 1207.0
+offset_bottom = 581.0
+text = "Press F1 to sleep"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

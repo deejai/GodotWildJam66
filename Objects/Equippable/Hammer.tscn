@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bq2b2lho2l50t"]
 
-[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="1_eq5pm"]
-[ext_resource type="Script" path="res://Objects/Equippable/Hammer/Hammer.gd" id="1_yxea0"]
+[ext_resource type="Script" path="res://Objects/Equippable/Hammer.gd" id="1_bdxrw"]
+[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="2_ctum5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_at304"]
 radius = 19.57
@@ -13,18 +13,19 @@ size = Vector2(74, 95)
 size = Vector2(76, 94)
 
 [node name="Hammer" type="RigidBody2D"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 lock_rotation = true
-script = ExtResource("1_yxea0")
+script = ExtResource("1_bdxrw")
 equip_offset_x = 25.0
 equip_offset_y = 10.0
+type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(28.6505, -50.3495)
 rotation = -0.204241
 scale = Vector2(4, 4)
-texture = ExtResource("1_eq5pm")
+texture = ExtResource("2_ctum5")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 

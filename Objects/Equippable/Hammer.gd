@@ -1,10 +1,16 @@
 extends Equippable
 
-@onready var collision_area: Area2D = $HitArea
+@onready var hit_area: Area2D = $HitArea
 var rotation_amount: float = 0.0
+var original_pos: Vector2
+
+func do_reset():
+	if not equipped:
+		position = original_pos
 
 func _ready():
-	collision_area.monitoring = false
+	original_pos = position
+	hit_area.monitoring = false
 
 func _process(delta):
 	if in_use:
@@ -14,16 +20,17 @@ func _process(delta):
 			rotation_amount = 0.0
 			rotation = 0.0
 			in_use = false
-			collision_area.monitoring = false
+			hit_area.monitoring = false
 
 func use():
 	if in_use:
 		return
 	in_use = true
-	collision_area.monitoring = true
+	hit_area.monitoring = true
 
 func _on_hit_area_area_entered(area):
 	print(area.get_parent())
 	if area.get_parent() is BrickWall:
 		area.get_parent().destroy()
 	print("!")
+

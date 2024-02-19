@@ -1,11 +1,19 @@
-[gd_scene load_steps=55 format=3 uid="uid://cw3lrrc85hs6t"]
+[gd_scene load_steps=63 format=3 uid="uid://cw3lrrc85hs6t"]
 
 [ext_resource type="Texture2D" uid="uid://bit3dtg64q6xv" path="res://Assets/aesprite/tilemap.png" id="1_dkik7"]
+[ext_resource type="Script" path="res://House.gd" id="1_ynnpe"]
 [ext_resource type="PackedScene" uid="uid://cil458od1sm3h" path="res://Player.tscn" id="2_dnaa7"]
 [ext_resource type="Texture2D" uid="uid://cwqkq2fn3jx2e" path="res://Assets/layout1.png" id="3_h7vdp"]
 [ext_resource type="PackedScene" uid="uid://ceda5rptmq08y" path="res://Objects/Lights/Candle.tscn" id="4_g4oj3"]
 [ext_resource type="PackedScene" uid="uid://c0uefbjqvn6st" path="res://Objects/BrickWall.tscn" id="5_ed57c"]
-[ext_resource type="PackedScene" uid="uid://bq2b2lho2l50t" path="res://Objects/Equippable/Hammer/Hammer.tscn" id="6_nd4o1"]
+[ext_resource type="PackedScene" uid="uid://bq2b2lho2l50t" path="res://Objects/Equippable/Hammer.tscn" id="6_nd4o1"]
+[ext_resource type="PackedScene" uid="uid://ckfd27qgl8nxk" path="res://Objects/Equippable/Ladder.tscn" id="7_w0bst"]
+[ext_resource type="PackedScene" uid="uid://rufbx1ht236b" path="res://Objects/Equippable/WoodenSpikes.tscn" id="8_hf0tu"]
+[ext_resource type="Texture2D" uid="uid://ceciy32nyvauo" path="res://Assets/window_with_moon.png" id="9_qb0s6"]
+[ext_resource type="AudioStream" uid="uid://b2cqpmkxlkndn" path="res://Assets/audio/Vampire_Castle.ogg" id="11_y4u68"]
+[ext_resource type="PackedScene" uid="uid://ddnxh1qcgp57n" path="res://ResetScreen.tscn" id="12_mt8dg"]
+[ext_resource type="PackedScene" uid="uid://damplahg4e2ae" path="res://Objects/Equippable/Helmet.tscn" id="13_jpldc"]
+[ext_resource type="PackedScene" uid="uid://s7va27qq03jd" path="res://Objects/Glass.tscn" id="14_fwv61"]
 
 [sub_resource type="Environment" id="Environment_jm3sd"]
 background_mode = 3
@@ -567,9 +575,10 @@ sources/0 = SubResource("TileSetAtlasSource_bqvjr")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_elfeg"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_ynnpe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.101961)
+modulate = Color(1, 1, 1, 0)
 z_index = 5
 position = Vector2(1798, 1094)
 scale = Vector2(1.5, 1.5)
@@ -589,7 +598,7 @@ layer_0/tile_data = PackedInt32Array(0, 393216, 0, 17, 262144, 2, 1, 262144, 2, 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_dnaa7")]
-position = Vector2(1112, 1760)
+position = Vector2(1760, 200)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(1760, 2264)
@@ -696,4 +705,29 @@ break_state = 3
 
 [node name="Hammer" parent="." instance=ExtResource("6_nd4o1")]
 position = Vector2(1312, 1720)
-type = 1
+
+[node name="Ladder" parent="." instance=ExtResource("7_w0bst")]
+position = Vector2(1768, 2168)
+
+[node name="WoodenSpikes" parent="." instance=ExtResource("8_hf0tu")]
+position = Vector2(2176, 2176)
+
+[node name="WindowWithMoon" type="Sprite2D" parent="."]
+position = Vector2(1936, 224)
+texture = ExtResource("9_qb0s6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_y4u68")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="ResetScreen" parent="CanvasLayer" instance=ExtResource("12_mt8dg")]
+visible = false
+
+[node name="Helmet" parent="." instance=ExtResource("13_jpldc")]
+position = Vector2(1032, 2104)
+
+[node name="Glass" parent="." instance=ExtResource("14_fwv61")]
+position = Vector2(1752, 376)

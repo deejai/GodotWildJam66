@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://damplahg4e2ae"]
+
+[ext_resource type="Script" path="res://Objects/Equippable/Helmet.gd" id="1_wq7o0"]
+[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="2_vpl7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q57ki"]
+size = Vector2(80, 66)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rht4s"]
+size = Vector2(80, 64)
+
+[node name="Helmet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_wq7o0")
+equip_offset_x = -8.0
+equip_offset_y = -60.0
+can_use = false
+type = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(4, 4)
+texture = ExtResource("2_vpl7i")
+region_enabled = true
+region_rect = Rect2(160, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q57ki")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rht4s")

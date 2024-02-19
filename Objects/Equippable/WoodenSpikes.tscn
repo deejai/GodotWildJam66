@@ -1,0 +1,122 @@
+[gd_scene load_steps=4 format=3 uid="uid://rufbx1ht236b"]
+
+[ext_resource type="Script" path="res://Objects/Equippable/WoodenSpikes.gd" id="1_gucfq"]
+[ext_resource type="Texture2D" uid="uid://dk0fn1vsj8m15" path="res://Assets/aesprite/objects.png" id="2_c7ic1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vme5d"]
+height = 236.0
+
+[node name="WoodenSpikes" type="Node2D"]
+scale = Vector2(1.655, 1.655)
+script = ExtResource("1_gucfq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-55.5, -14.5)
+scale = Vector2(1.03125, 0.90625)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-42, -18.5)
+scale = Vector2(1, 1.15625)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-24, -16)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-10, -16)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(-114, -12.5)
+scale = Vector2(0.8125, 0.78125)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(-103, -16)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(-85, -16)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(-71, -12)
+scale = Vector2(1, 0.75)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(67, -15)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+position = Vector2(81, -15)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(99, -15)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+position = Vector2(113, -10.5)
+scale = Vector2(1, 0.71875)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D13" type="Sprite2D" parent="."]
+position = Vector2(6, -15)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D14" type="Sprite2D" parent="."]
+position = Vector2(20, -12)
+scale = Vector2(1, 0.8125)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D15" type="Sprite2D" parent="."]
+position = Vector2(38, -15)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Sprite2D16" type="Sprite2D" parent="."]
+position = Vector2(52, -15)
+texture = ExtResource("2_c7ic1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vme5d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
